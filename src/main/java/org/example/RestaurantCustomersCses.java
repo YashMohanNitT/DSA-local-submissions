@@ -1,7 +1,7 @@
-package org.example;//package org.example; //comment this out when submitting on sites
+//package org.example;//package org.example; //comment this out when submitting on sites
 
 import java.io.*;
-import java.util.TreeMap;
+import java.util.*;
 
 public class RestaurantCustomersCses {
     public static void main(String[] args) {
@@ -17,28 +17,39 @@ public class RestaurantCustomersCses {
         FastReader sc = new FastReader();
         FastWriter out = new FastWriter();
 
-        int n = sc.nextInt(), m = sc.nextInt();
-        TreeMap<Integer, Integer> tickets = new TreeMap<>();
+        int n = sc.nextInt();
+        Interval[] intervals = new Interval[n];
+        Set<Integer> uniqueTimeStamps = new TreeSet<>();
         for (int i = 0; i < n; ++i) {
-            int price = sc.nextInt();
-            tickets.put(price, tickets.getOrDefault(price, 0) + 1);
+            intervals[i] = new Interval();
+            intervals[i].start = sc.nextInt();
+            intervals[i].end = sc.nextInt();
+            uniqueTimeStamps.add(intervals[i].start);
+            uniqueTimeStamps.add(intervals[i].end);
         }
-        for (int i = 0; i < m; ++i) {
-            int customerBudget = sc.nextInt();
-            Integer match = tickets.floorKey(customerBudget);
-            if (match == null) {
-                out.println(-1);
-            } else {
-                out.println(match);
-                int count = tickets.get(match);
-                if (count == 1) {
-                    tickets.remove(match);
-                } else {
-                    tickets.put(match, count - 1);
-                }
-            }
+        int idx = 0;
+        Map<Integer, Integer> num2Idx = new HashMap<>();
+        for (Integer timeStamp : uniqueTimeStamps) {
+            num2Idx.put(timeStamp, idx);
+            idx++;
         }
+        int[] prefixSum = new int[num2Idx.size() + 1];
+        Arrays.fill(prefixSum, 0);
+        for (int i = 0; i < n; ++i) {
+            prefixSum[num2Idx.get(intervals[i].start)]++;
+            prefixSum[num2Idx.get(intervals[i].end) + 1]--;
+        }
+        int ans = prefixSum[0];
+        for (int i = 1; i < prefixSum.length; ++i) {
+            prefixSum[i] += prefixSum[i - 1];
+            ans = Math.max(ans, prefixSum[i]);
+        }
+        out.println(ans);
         out.flush();
+    }
+
+    static class Interval {
+        int start, end;
     }
 
     // FastReader as a static inner class for single-file submission
