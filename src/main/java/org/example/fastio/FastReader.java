@@ -82,6 +82,36 @@ public class FastReader {
         return Double.parseDouble(next());
     }
 
+    public float nextFloat() {
+        return Float.parseFloat(next());
+    }
+
+    public char nextChar() {
+        int c = read();
+        while (c <= 32) {
+            if (c == -1) return '\0';
+            c = read();
+        }
+        return (char) c;
+    }
+
+    public String nextString() {
+        return next();
+    }
+
+    public byte nextByte() {
+        return (byte) nextInt();
+    }
+
+    public short nextShort() {
+        return (short) nextInt();
+    }
+
+    public boolean nextBoolean() {
+        String s = next();
+        return s != null && s.equalsIgnoreCase("true");
+    }
+
     public String nextLine() {
         int c = read();
         while (c == '\r' || c == '\n') {

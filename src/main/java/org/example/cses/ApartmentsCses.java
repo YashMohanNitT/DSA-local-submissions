@@ -1,4 +1,4 @@
-package org.example; //comment this out when submitting on sites
+package org.example.cses; //comment this out when submitting on sites
 
 import java.io.*;
 import java.util.Arrays;

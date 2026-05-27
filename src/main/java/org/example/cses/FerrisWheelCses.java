@@ -1,4 +1,34 @@
-//package org.example; //comment this out when submitting on sites
+package org.example.cses;
+
+/**
+ * Problem Name: Ferris Wheel
+ * Link: https://cses.fi/problemset/task/1090
+ *
+ * Description:
+ * There are n children who want to go to a Ferris wheel, and your task is to find a gondola for each child.
+ * Each gondola may have one or two children in it, and in addition, the total weight in a gondola may not exceed x.
+ * You know the weight of every child.
+ * What is the minimum number of gondolas needed for the children?
+ *
+ * Input:
+ * The first input line contains two integers n and x: the number of children and the maximum allowed weight.
+ * The next line contains n integers p_1, p_2, ..., p_n: the weight of each child.
+ *
+ * Output:
+ * Print one integer: the minimum number of gondolas.
+ *
+ * Constraints:
+ * 1 <= n <= 2 * 10^5
+ * 1 <= x <= 10^9
+ * 1 <= p_i <= x
+ *
+ * Example Input:
+ * 4 10
+ * 7 2 3 9
+ *
+ * Example Output:
+ * 3
+ */
 
 import java.io.*;
 import java.util.Arrays;
@@ -112,6 +142,36 @@ public class FerrisWheelCses {
 
         double nextDouble() {
             return Double.parseDouble(next());
+        }
+
+        float nextFloat() {
+            return Float.parseFloat(next());
+        }
+
+        char nextChar() {
+            int c = read();
+            while (c <= 32) {
+                if (c == -1) return '\0';
+                c = read();
+            }
+            return (char) c;
+        }
+
+        String nextString() {
+            return next();
+        }
+
+        byte nextByte() {
+            return (byte) nextInt();
+        }
+
+        short nextShort() {
+            return (short) nextInt();
+        }
+
+        boolean nextBoolean() {
+            String s = next();
+            return s != null && s.equalsIgnoreCase("true");
         }
 
         String nextLine() {

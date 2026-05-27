@@ -1,4 +1,4 @@
-//package org.example;//package org.example; //comment this out when submitting on sites
+package org.example.cses;//package org.example;//package org.example; //comment this out when submitting on sites
 
 import java.io.*;
 import java.util.*;

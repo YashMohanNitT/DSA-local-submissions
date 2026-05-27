@@ -63,6 +63,57 @@ public class FastWriter {
         write((byte) '\n');
     }
 
+    public void print(String s) {
+        if (s == null) {
+            print("null");
+            return;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            write((byte) s.charAt(i));
+        }
+    }
+
+    public void println(String s) {
+        print(s);
+        write((byte) '\n');
+    }
+
+    public void print(char c) {
+        write((byte) c);
+    }
+
+    public void println(char c) {
+        print(c);
+        write((byte) '\n');
+    }
+
+    public void print(double d) {
+        print(String.valueOf(d));
+    }
+
+    public void println(double d) {
+        print(d);
+        write((byte) '\n');
+    }
+
+    public void print(float f) {
+        print(String.valueOf(f));
+    }
+
+    public void println(float f) {
+        print(f);
+        write((byte) '\n');
+    }
+
+    public void print(boolean b) {
+        print(b ? "true" : "false");
+    }
+
+    public void println(boolean b) {
+        print(b);
+        write((byte) '\n');
+    }
+
     private void write(byte b) {
         if (pos == buffer.length) flush();
         buffer[pos++] = b;
